@@ -13,17 +13,17 @@ surfout=[];
 for i=1:size(Vol,1)
     
 FileIn=Vol(i,:);
-[Path,NameFile,Suffix]=fileparts(FileIn);
+[Path,NameFile,~]=fileparts(FileIn);
 
 % projecting to the Left
-FileOutL=fullfile(Path,[NameFile '.L.func.gii']);
-ProjL=fullfile(Meshpath,'Conte69.L.midthickness.32k_fs_LR.surf.gii');
+FileOutL=fullfile(Path,[NameFile '.L.shape.gii']);
+ProjL=fullfile(Meshpath,'Conte69.L.midthickness.164k_fs_LR.surf.gii ');
 unix(['wb_command -volume-to-surface-mapping ' FileIn ' ' ...
     ProjL  ' ' FileOutL ' ' ProjMethod]);
 
 % projecting to the right
-FileOutR=fullfile(Path,[NameFile '.R.func.gii']);
-ProjR=fullfile(Meshpath,'Conte69.R.midthickness.32k_fs_LR.surf.gii');
+FileOutR=fullfile(Path,[NameFile '.R.shape.gii']);
+ProjR=fullfile(Meshpath,'Conte69.R.midthickness.164k_fs_LR.surf.gii ');
 unix(['wb_command -volume-to-surface-mapping ' FileIn ' ' ...
     ProjR ' ' FileOutR ' ' ProjMethod]); 
 

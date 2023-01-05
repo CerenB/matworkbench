@@ -6,17 +6,17 @@ else
     surfaces=nargin{1};
 end
 
-VIsurf=[fullfile(Meshpath, 'Conte69.L.very_inflated.32k_fs_LR.surf.gii ')  ...
-    fullfile(Meshpath, 'Conte69.R.very_inflated.32k_fs_LR.surf.gii ') ] ;
+VIsurf=[fullfile(Meshpath, 'Conte69.L.very_inflated.164k_fs_LR.surf.gii ')  ...
+    fullfile(Meshpath, 'Conte69.R.very_inflated.164k_fs_LR.surf.gii ') ] ;
     
-Isurf=[fullfile(Meshpath,'Conte69.L.inflated.32k_fs_LR.surf.gii ') ...
-       fullfile(Meshpath, 'Conte69.R.inflated.32k_fs_LR.surf.gii ')];
+Isurf=[fullfile(Meshpath,'Conte69.L.inflated.164k_fs_LR.surf.gii ') ...
+       fullfile(Meshpath, 'Conte69.R.inflated.164k_fs_LR.surf.gii ')];
    
-Msurf=[fullfile(Meshpath, 'Conte69.L.midthickness.32k_fs_LR.surf.gii ')...
-       fullfile(Meshpath,'Conte69.R.midthickness.32k_fs_LR.surf.gii ')];
+Msurf=[fullfile(Meshpath, 'Conte69.L.midthickness.164k_fs_LR.surf.gii ')...
+       fullfile(Meshpath,'Conte69.R.midthickness.164k_fs_LR.surf.gii ')];
    
-Shapsurf=[fullfile(Meshpath, 'Conte69.L.32k_fs_LR.shape.gii ' ) ...
-          fullfile(Meshpath, 'Conte69.R.32k_fs_LR.shape.gii ' )];
+Shapsurf=[fullfile(Meshpath, 'Conte69.L.164k_fs_LR.shape.gii ' ) ...
+          fullfile(Meshpath, 'Conte69.R.164k_fs_LR.shape.gii ' )];
       
 switch surfaces
     
@@ -34,7 +34,7 @@ switch surfaces
         
 end
 
-AvBrain=fullfile(Meshpath, 'Conte69_AverageT1w.nii ');
+AvBrain=fullfile(Meshpath, 'Conte69_AverageT1w.nii.gz ');
 
 Commands=['wb_view ' AvBrain ' ' surf  ' '];
 if size(varargin,1)>0

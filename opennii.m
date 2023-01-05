@@ -18,7 +18,7 @@ function opennii(varargin)
 Benchpath=fileparts(which('opennii.m'));
 
 % the path of meshes
-Meshpath=fullfile(Benchpath ,'Conte69_32k_fs_LR');
+Meshpath=fullfile(Benchpath ,'Conte69_atlas_164k_wb');
 
 n=0; 
 m=0;
@@ -31,32 +31,42 @@ else
     n=n+1;
 end
 
-% N=nifti(nii);
-
-%%% check if the files are nifti
-createdNifti=[];
-for i=1:size(nii,1)
-    Filename=nii(i,:);
-    [pth,file,suffix]=fileparts(Filename);
-    if strcmpi(suffix,'.img')
-        V=spm_vol(Filename);
-        ima=spm_read_vols(V);
-        V.fname=fullfile(pth,[file '.nii']);
-        spm_write_vol(V,ima);
-        nii(i,:)=V.fname;
-        createdNifti=char(createdNifti,V.fname);
-    end
-end
+% % N=nifti(nii);
+% 
+% %%% check if the files are nifti
+% createdNifti=[];
+% for i=1:size(nii,1)
+%     Filename=nii(i,:);
+%     [pth,file,suffix]=fileparts(Filename);
+%     if strcmpi(suffix,'.img')
+%         V=spm_vol(Filename);
+%         ima=spm_read_vols(V);
+%         V.fname=fullfile(pth,[file '.nii']);
+%         spm_write_vol(V,ima);
+%         nii(i,:)=V.fname;
+%         createdNifti=char(createdNifti,V.fname);
+%     end
+% end
 
 %%% showing the overlay on the surface brain
-surfout=matwb_project(Meshpath,nii);
+% if numel(varargin) > 1 
+%     for iFile = 1:2 % size(varargin, 1)
+%         
+% %         source = deblank(outputFiles(iFile, :));
+%         nii = varargin{iFile};
+%         surfout{iFile} = matwb_project(Meshpath,nii);
+%     end 
+% else
+    surfout=matwb_project(Meshpath,nii);
+% end
+        
 if  m>0
     if n>0
         if sum(strcmp(varargin,'NoShow'))>0
             return;
         end
     end
-    matwb_view(Meshpath,char(nii,surfout));
+    matwb_view(Meshpath,char(nii,surfout), {'Inflated'});
 else
     disp('Nothing has been selected')
 end
